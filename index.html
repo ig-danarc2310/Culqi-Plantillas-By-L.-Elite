@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantillas By L. Elite ✅</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+    <style>
+        /* SISTEMA DE DISEÑO ELITE */
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --input-bg: #1e1e1e;
+            --text: #e0e0e0;
+            --text-dim: #888;
+            --border: #2a2a2a;
+            --accent: #2196F3;
+            --success: #00e676;
+            --warning: #ffd600;
+            --danger: #ff1744;
+            --radius: 12px;
+            --main-width: 600px;
+        }
+
+        body.light-mode {
+            --bg: #f4f4f9; --surface: #ffffff; --input-bg: #f0f0f0;
+            --text: #1a1a1a; --text-dim: #666; --border: #ddd;
+            --accent: #1565C0; --success: #1b5e20;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+
+        /* CENTRADO ABSOLUTO (FLEXBOX) */
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Centrado vertical estricto */
+            min-height: 100vh;
+            padding: 20px 15px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Contenedor principal que permite crecimiento y scroll natural sin romper el centrado */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            max-width: var(--main-width);
+            max-height: 95vh;
+        }
+
+        .wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeIn 0.4s ease;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        .wrapper::-webkit-scrollbar { width: 6px; }
+        .wrapper::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            display: flex; flex-direction: column; gap: 12px;
+        }
+
+        h2 {
+            text-align: center; font-size: 1rem; text-transform: uppercase;
+            letter-spacing: 1px; border-bottom: 1px solid var(--border);
+            padding-bottom: 10px; margin-bottom: 5px; cursor: pointer; user-select: none;
+        }
+
+        /* ── Botones de plantillas ── */
+        #botonesPlantillas { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+
+        .btn-plantilla {
+            padding: 8px 14px; background-color: var(--input-bg); color: var(--text);
+            border: 1px solid var(--border); border-radius: 8px; cursor: pointer;
+            font-weight: bold; font-size: 0.75rem; transition: 0.2s; text-transform: uppercase;
+        }
+
+        .btn-plantilla:hover { border-color: var(--accent); }
+        .btn-plantilla.activo { background-color: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 0 10px rgba(33, 150, 243, 0.3); }
+        .btn-principal { background-color: #555 !important; color: white !important; border-color: #555 !important; }
+        .btn-principal:hover { background-color: #333 !important; border-color: #333 !important; }
+
+        /* ── Sección plantilla dinámica ── */
+        .plantilla-titulo {
+            font-size: 0.85rem; font-weight: bold; color: var(--accent);
+            margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; text-align: center;
+        }
+
+        /* Campos Dinámicos adaptados a la Estética Elite */
+        .campo-vertical { margin-bottom: 10px; width: 100%; display: flex; flex-direction: column; gap: 4px; }
+        .campo-vertical label { font-size: 0.65rem; font-weight: bold; color: var(--text-dim); text-transform: uppercase; }
+        
+        .campo-row { display: flex; align-items: center; margin-bottom: 8px; gap: 8px; width: 100%; }
+        .campo-row label { font-size: 0.65rem; font-weight: bold; color: var(--text-dim); white-space: nowrap; flex-shrink: 0; width: 75px; text-transform: uppercase; }
+
+        input, textarea {
+            width: 100%; background: var(--input-bg); border: 1px solid var(--border);
+            border-radius: 8px; padding: 10px; color: var(--text); font-size: 0.85rem;
+            font-family: inherit; outline: none; transition: 0.2s;
+        }
+        input:focus, textarea:focus { border-color: var(--accent); }
+
+        .campo-pregunta { margin-bottom: 10px; width: 100%; display: flex; flex-direction: column; gap: 4px; }
+        .campo-pregunta .pregunta-label { font-size: 0.7rem; font-weight: bold; color: var(--text); line-height: 1.3; }
+        .campo-pregunta textarea { resize: none; overflow: hidden; }
+
+        .campo-fijo, .texto-fijo-bloque {
+            font-size: 0.75rem; color: var(--text); background: rgba(33, 150, 243, 0.08);
+            border-left: 3px solid var(--accent); border-radius: 4px; padding: 8px 10px;
+            margin-bottom: 8px; line-height: 1.4; word-break: break-word;
+        }
+
+        .plantilla-sep { border: none; border-top: 1px dashed var(--border); margin: 12px 0; }
+
+        /* ── Botones de Acción ── */
+        .btn-copiar {
+            width: 100%; padding: 14px; margin-top: 10px; background-color: var(--accent);
+            color: white; border: none; border-radius: 8px; cursor: pointer;
+            font-weight: bold; font-size: 0.8rem; text-transform: uppercase; transition: 0.2s;
+        }
+        .btn-copiar:active { transform: scale(0.98); }
+        .btn-copiar.copiado { background-color: var(--success); color: #000; }
+
+        #botonesRapidos { display: flex; gap: 10px; margin-top: 5px; }
+        .btn-rapido {
+            flex: 1; padding: 12px; border: none; border-radius: 8px;
+            cursor: pointer; font-weight: bold; font-size: 0.75rem; color: white;
+            transition: 0.2s; text-transform: uppercase;
+        }
+        .btn-rapido:active { transform: scale(0.97); }
+        .btn-rapido.solicitudes { background-color: #1565C0; }
+        .btn-rapido.solicitudes:hover { background-color: #0D47A1; }
+        .btn-rapido.reclamos { background-color: #e65100; }
+        .btn-rapido.reclamos:hover { background-color: #bf360c; }
+
+        .btn-clear {
+            padding: 12px; background-color: transparent; color: var(--danger);
+            border: 1px solid var(--danger); border-radius: 8px; cursor: pointer;
+            font-weight: bold; font-size: 0.75rem; width: 100%; text-transform: uppercase; transition: 0.2s;
+        }
+        .btn-clear:hover { background-color: var(--danger); color: white; }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            padding: 10px 25px; border-radius: 30px; font-size: 0.8rem; font-weight: bold;
+            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 9999;
+            white-space: nowrap; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .toast.visible { opacity: 1; }
+        .toast.azul { background: var(--accent); color: white; }
+        .toast.naranja { background: var(--warning); color: #000; }
+        .toast.verde { background: var(--success); color: #000; }
+
+        .grid-basicos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        @media (max-width: 400px) { .grid-basicos { grid-template-columns: 1fr; } }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <div class="wrapper">
+            <div class="card">
+                <h2 onclick="toggleTheme()" title="Clic para cambiar tema">Plantillas By L. ✅</h2>
+                
+                <div id="botonesPlantillas">
+                    <button class="btn-plantilla btn-principal" onclick="irPrincipal()">&#8962; Principal</button>
+                    <button class="btn-plantilla" onclick="togglePlantilla('cbancaria', this)">C.Bancaria</button>
+                    <button class="btn-plantilla" onclick="togglePlantilla('redpos', this)">RedPOS</button>
+                    <button class="btn-plantilla" onclick="togglePlantilla('contometros', this)">Contometros</button>
+                    <button class="btn-plantilla" onclick="togglePlantilla('correo', this)">Correo</button>
+                    <button class="btn-plantilla" onclick="togglePlantilla('cabono', this)">C.Abono</button>
+                </div>
+            </div>
+
+            <div id="seccionPlantilla" class="card" style="display:none; border: 2px solid var(--accent); background: rgba(33, 150, 243, 0.02);">
+                <div class="plantilla-titulo" id="plantillaTitulo"></div>
+                <div id="camposPlantilla"></div>
+                <button class="btn-copiar" id="btnCopiar" onclick="copiarPlantilla()">Copiar Plantilla</button>
+            </div>
+
+            <div class="card" id="camposBasicosContainer">
+                <div class="plantilla-titulo" style="text-align: center; color: var(--text);">Datos del Comercio</div>
+                <div style="text-align: center; font-size: 0.65rem; color: var(--success); margin-bottom: 10px;">
+                    💡 Puedes pegar el texto de información directamente en cualquier campo para auto-rellenar.
+                </div>
+                
+                <div id="camposBasicos" class="grid-basicos">
+                    <div class="campo-vertical">
+                        <label>RUC</label>
+                        <input type="text" id="b_ruc" placeholder="RUC">
+                    </div>
+                    <div class="campo-vertical">
+                        <label>ID</label>
+                        <input type="text" id="b_id" placeholder="ID">
+                    </div>
+                    <div class="campo-vertical">
+                        <label>Nombre</label>
+                        <input type="text" id="b_nombre" placeholder="Nombre">
+                    </div>
+                    <div class="campo-vertical">
+                        <label>Correo</label>
+                        <input type="text" id="b_correo" placeholder="Correo">
+                    </div>
+                    <div class="campo-vertical">
+                        <label>Teléfono</label>
+                        <input type="text" id="b_telefono" placeholder="Telefono">
+                    </div>
+                    <div class="campo-vertical">
+                        <label>Terminal</label>
+                        <input type="text" id="b_terminal" placeholder="Terminal">
+                    </div>
+                </div>
+
+                <div id="botonesRapidos">
+                    <button class="btn-rapido solicitudes" onclick="copiarSolicitud()">SOLICITUDES</button>
+                    <button class="btn-rapido reclamos" onclick="copiarReclamo()">RECLAMOS</button>
+                </div>
+            </div>
+
+            <!-- TARJETA DEL BOTÓN LIMPIAR -->
+            <div class="card" style="padding: 15px;">
+                <button class="btn-clear" onclick="limpiarTodo()">LIMPIAR TODO</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Tema Oscuro/Claro Lógica Elite
+        if (localStorage.getItem('plantillas_l_theme') === 'light') document.body.classList.add('light-mode');
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('plantillas_l_theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+
+        const PLANTILLAS = {
+            cbancaria: {
+                titulo: 'Cuenta Bancaria', tipo: 'simple',
+                campos: [
+                    { id: 'cb_nombre', label: 'NOMBRE', basico: 'b_nombre' },
+                    { id: 'cb_ruc', label: 'RUC', basico: 'b_ruc' },
+                    { id: 'cb_id', label: 'ID', basico: 'b_id' },
+                    { id: 'cb_telefono', label: 'Telefono', basico: 'b_telefono' },
+                    { id: 'cb_comercio', label: 'Nombre del comercio' },
+                    { id: 'cb_banco', label: 'Nombre del banco' },
+                    { id: 'cb_ncuenta', label: 'Numero de cuenta bancaria' },
+                    { id: 'cb_cci', label: 'Numero de CCI' },
+                    { id: 'cb_tcuenta', label: 'Tipo de cuenta bancaria' },
+                    { id: 'cb_moneda', label: 'Tipo de moneda' },
+                    { id: 'cb_titular', label: 'Nombre de la titularidad' },
+                ]
+            },
+            redpos: {
+                titulo: 'RedPOS', tipo: 'redpos',
+                preguntas: [
+                    { id: 'rp_p1', num: '1.', label: 'Descripcion del problema principal:', prefijo: 'Comercio indica que ', textarea: true },
+                    { id: 'rp_p2', num: '2.', label: '¿Que accion o proceso realizaba el comercio cuando ocurrio?', prefijo: 'El comercio estaba realizando ', textarea: true },
+                    { id: 'rp_p3', num: '3.', label: '¿Cual fue el impacto generado?', prefijo: 'Dado el inconveniente, el comercio ', textarea: true },
+                    { id: 'rp_p4', num: '4.', label: '¿Cuales fueron los descartes y validaciones realizadas por el asesor?', prefijo: 'Se realizó ', textarea: true },
+                    { id: 'rp_p5_fijo', num: '5.', label: 'Adjuntar evidencias', fijo: 'Si', textarea: false },
+                    { id: 'rp_p6', num: '6.', label: '¿Que solucion espera el comercio?', prefijo: 'La necesidad esencial es que ', textarea: true },
+                    { id: 'rp_p7_fijo', num: '7.', label: '¿Que informacion adicional se necesita para la resolucion?', fijo: 'N.A', textarea: false },
+                    { id: 'rp_p8_fijo', num: '8.', label: 'Tickets previos relacionados:', fijo: 'N.A', textarea: false },
+                ],
+                basicos: [
+                    { id: 'rp_ruc', label: 'RUC', basico: 'b_ruc' },
+                    { id: 'rp_id', label: 'ID', basico: 'b_id' },
+                    { id: 'rp_nombre', label: 'Nombre', basico: 'b_nombre' },
+                    { id: 'rp_correo', label: 'Correo', basico: 'b_correo' },
+                    { id: 'rp_telefono', label: 'Telefono', basico: 'b_telefono' },
+                    { id: 'rp_terminal', label: 'Terminal', basico: 'b_terminal' },
+                ]
+            },
+            contometros: {
+                titulo: 'Contometros', tipo: 'contometros',
+                campos: [
+                    { id: 'ct_ruc', label: 'RUC', basico: 'b_ruc' },
+                    { id: 'ct_id', label: 'ID', basico: 'b_id' },
+                    { id: 'ct_nombre', label: 'Nombre', basico: 'b_nombre' },
+                    { id: 'ct_correo', label: 'Correo', basico: 'b_correo' },
+                    { id: 'ct_solicita', label: 'COMERCIO SOLICITA CONTOMETROS' },
+                    { id: 'ct_dir', label: 'DIRECCION' },
+                    { id: 'ct_ref', label: 'REFERENCIA' },
+                    { id: 'ct_horario', label: 'HORARIO DE ATENCION' },
+                    { id: 'ct_celular', label: 'CELULAR', basico: 'b_telefono' },
+                    { id: 'ct_encargado', label: 'PERSONA ENCARGADA' },
+                ]
+            },
+            correo: {
+                titulo: 'Correo', tipo: 'correo',
+                campos: [
+                    { id: 'co_ruc', label: 'RUC', basico: 'b_ruc' },
+                    { id: 'co_id', label: 'ID', basico: 'b_id' },
+                    { id: 'co_nombre', label: 'Nombre', basico: 'b_nombre' },
+                    { id: 'co_correo', label: 'Correo', basico: 'b_correo' },
+                    { id: 'co_telefono', label: 'Telefono', basico: 'b_telefono' },
+                    { id: 'co_terminal', label: 'Terminal', basico: 'b_terminal' },
+                    { id: 'co_dice', label: 'Dice' },
+                    { id: 'co_debeDecir', label: 'Debe decir' },
+                ]
+            },
+            cabono: {
+                titulo: 'C.Abono', tipo: 'cabono',
+                campos: [
+                    { id: 'ca_motivo', label: 'Motivo' },
+                    { id: 'ca_cambio', label: 'Cambio de' },
+                    { id: 'ca_ruc', label: 'RUC', basico: 'b_ruc' },
+                    { id: 'ca_id', label: 'ID', basico: 'b_id' },
+                    { id: 'ca_nombre', label: 'Nombre', basico: 'b_nombre' },
+                    { id: 'ca_correo', label: 'Correo', basico: 'b_correo' },
+                    { id: 'ca_telefono', label: 'Telefono', basico: 'b_telefono' },
+                    { id: 'ca_terminal', label: 'Terminal', basico: 'b_terminal' },
+                ]
+            }
+        };
+
+        let plantillaActiva = null;
+
+        // ─── EXTRACCIÓN AUTOMÁTICA DE DATOS (PEGADO GLOBAL MULTI-TERMINAL) ────────────
+        document.addEventListener('paste', function(e) {
+            // Solo actuar si se pega dentro de un input o textarea
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                const texto = e.clipboardData.getData('text');
+                
+                // Criterio para detectar si es un bloque de datos copiado
+                if (texto.includes('Razón social') || texto.includes('Número de documento') || texto.includes('Detalle de comercio')) {
+                    e.preventDefault(); // Detenemos el pegado bruto
+                    
+                    // Función para inyectar datos en los campos básicos y dinámicos
+                    const setValor = (baseId, valor) => {
+                        if (!valor) return;
+                        const elBase = document.getElementById(baseId);
+                        if(elBase) elBase.value = valor;
+                        
+                        if (plantillaActiva) {
+                            const p = PLANTILLAS[plantillaActiva];
+                            const todosLosCampos = [...(p.campos||[]), ...(p.basicos||[])];
+                            const campoVinculado = todosLosCampos.find(x => x.basico === baseId);
+                            if (campoVinculado) {
+                                const elDinamico = document.getElementById(campoVinculado.id);
+                                if(elDinamico) elDinamico.value = valor;
+                            }
+                        }
+                    };
+
+                    // Extraer datos estándar
+                    const ruc = texto.match(/Número de documento\s*[\n\r]+\s*(\d{11})/i);
+                    if(ruc) setValor('b_ruc', ruc[1].trim());
+
+                    const id = texto.match(/ID:?\s*[\n\r]*\s*(\d{10,})/i);
+                    if(id) setValor('b_id', id[1].trim());
+
+                    const nombre = texto.match(/Razón social\s*[\n\r]+\s*([^\n\r]+)/i);
+                    if(nombre) setValor('b_nombre', nombre[1].trim());
+
+                    const correo = texto.match(/Correo electrónico\s*[\n\r]+\s*([^\s]+@[^\s]+)/i);
+                    if(correo) setValor('b_correo', correo[1].trim());
+
+                    const tel = texto.match(/Celular\s*[\n\r]+\s*(\d{9,})/i);
+                    if(tel) setValor('b_telefono', tel[1].trim());
+
+                    // Extracción de TODOS los terminales (cadenas alfanuméricas de 16 a 30 caracteres)
+                    const terminalesMatches = texto.match(/\b[A-Z0-9]{16,30}\b/g);
+                    if (terminalesMatches && terminalesMatches.length > 0) {
+                        const unicos = [...new Set(terminalesMatches)];
+                        let terminalesFormateados = "";
+                        
+                        if (unicos.length === 1) {
+                            terminalesFormateados = unicos[0];
+                        } else {
+                            const ultimo = unicos.pop(); 
+                            terminalesFormateados = unicos.join(", ") + " y " + ultimo;
+                        }
+                        
+                        setValor('b_terminal', terminalesFormateados);
+                    }
+
+                    mostrarToast('✅ Datos extraídos y autocompletados', 'verde');
+                }
+            }
+        });
+
+        // ─── PRINCIPAL ───────────────────────────────────────────────────────────────
+        function irPrincipal() {
+            if (plantillaActiva) {
+                document.getElementById('seccionPlantilla').style.display = 'none';
+                document.getElementById('camposBasicosContainer').style.display = 'flex';
+                document.querySelectorAll('.btn-plantilla').forEach(b => b.classList.remove('activo'));
+                plantillaActiva = null;
+            }
+        }
+
+        // ─── TOGGLE / RENDER ─────────────────────────────────────────────────────────
+        function togglePlantilla(clave, btn) {
+            const seccion = document.getElementById('seccionPlantilla');
+            const basicosContainer = document.getElementById('camposBasicosContainer');
+            const allBtns = document.querySelectorAll('.btn-plantilla:not(.btn-principal)');
+
+            if (plantillaActiva === clave) {
+                seccion.style.display = 'none';
+                basicosContainer.style.display = 'flex';
+                btn.classList.remove('activo');
+                plantillaActiva = null;
+                return;
+            }
+
+            allBtns.forEach(b => b.classList.remove('activo'));
+            btn.classList.add('activo');
+
+            const p = PLANTILLAS[clave];
+            document.getElementById('plantillaTitulo').textContent = p.titulo;
+
+            const contenedor = document.getElementById('camposPlantilla');
+            contenedor.innerHTML = '';
+
+            if (p.tipo === 'simple') renderSimple(p, contenedor);
+            else if (p.tipo === 'redpos') renderRedPOS(p, contenedor);
+            else if (p.tipo === 'contometros') renderContometros(p, contenedor);
+            else if (p.tipo === 'correo') renderCorreo(p, contenedor);
+            else if (p.tipo === 'cabono') renderCAbono(p, contenedor);
+
+            basicosContainer.style.display = 'none';
+            seccion.style.display = 'flex';
+            plantillaActiva = clave;
+        }
+
+        function mkVertical(c) {
+            const wrap = document.createElement('div');
+            wrap.className = 'campo-vertical';
+            const lbl = document.createElement('label');
+            lbl.textContent = c.label + ':';
+            lbl.setAttribute('for', c.id);
+            const input = document.createElement('input');
+            input.type = 'text'; input.id = c.id; input.placeholder = c.label;
+            if (c.basico) { const val = document.getElementById(c.basico)?.value || ''; if (val) input.value = val; }
+            wrap.appendChild(lbl); wrap.appendChild(input);
+            return wrap;
+        }
+
+        function mkInline(c) {
+            const row = document.createElement('div');
+            row.className = 'campo-row';
+            const lbl = document.createElement('label');
+            lbl.textContent = c.label + ':';
+            lbl.setAttribute('for', c.id);
+            const input = document.createElement('input');
+            input.type = 'text'; input.id = c.id; input.placeholder = c.label;
+            if (c.basico) { const val = document.getElementById(c.basico)?.value || ''; if (val) input.value = val; }
+            row.appendChild(lbl); row.appendChild(input);
+            return row;
+        }
+
+        function renderSimple(p, contenedor) {
+            p.campos.forEach(c => contenedor.appendChild(mkVertical(c)));
+        }
+
+        function renderRedPOS(p, contenedor) {
+            p.preguntas.forEach(q => {
+                const bloque = document.createElement('div');
+                bloque.className = 'campo-pregunta';
+                const lbl = document.createElement('span');
+                lbl.className = 'pregunta-label';
+                lbl.textContent = q.num + ' ' + q.label;
+                bloque.appendChild(lbl);
+                if (q.fijo) {
+                    const fijo = document.createElement('div');
+                    fijo.className = 'campo-fijo';
+                    fijo.textContent = q.fijo;
+                    bloque.appendChild(fijo);
+                } else {
+                    const ta = document.createElement('textarea');
+                    ta.id = q.id; ta.rows = 1; ta.value = q.prefijo;
+                    ta.oninput = function () { autoAjustar(this); };
+                    ta.addEventListener('focus', function () {
+                        if (this.value === q.prefijo) this.setSelectionRange(q.prefijo.length, q.prefijo.length);
+                    });
+                    setTimeout(() => autoAjustar(ta), 0);
+                    bloque.appendChild(ta);
+                }
+                contenedor.appendChild(bloque);
+            });
+
+            const sep = document.createElement('hr'); sep.className = 'plantilla-sep'; contenedor.appendChild(sep);
+            const tit = document.createElement('div'); tit.className = 'plantilla-titulo'; tit.style.marginTop = '2px'; tit.textContent = 'Datos del comercio'; contenedor.appendChild(tit);
+            p.basicos.forEach(c => contenedor.appendChild(mkInline(c)));
+        }
+
+        function renderContometros(p, contenedor) {
+            const cab1 = document.createElement('div'); cab1.className = 'texto-fijo-bloque';
+            cab1.textContent = 'Estimados, por favor su apoyo con lo siguiente:'; contenedor.appendChild(cab1);
+            const cab2 = document.createElement('div'); cab2.className = 'texto-fijo-bloque';
+            cab2.textContent = 'Motivo de la derivacion: Comercio se comunica para poder solicitar contometros, se valida que no hay campaña de contometros gratis, por lo que requiere gestionar la compra.'; contenedor.appendChild(cab2);
+
+            p.campos.forEach((c, i) => {
+                if (i === 2 || i === 4 || i === 5) {
+                    const sep = document.createElement('hr'); sep.className = 'plantilla-sep'; contenedor.appendChild(sep);
+                }
+                contenedor.appendChild(mkVertical(c));
+            });
+
+            const sep2 = document.createElement('hr'); sep2.className = 'plantilla-sep'; contenedor.appendChild(sep2);
+            const pie = document.createElement('div'); pie.className = 'texto-fijo-bloque';
+            pie.textContent = 'Tickets previos: No cuenta con tickets previos.'; contenedor.appendChild(pie);
+        }
+
+        function renderCorreo(p, contenedor) {
+            const cab = document.createElement('div'); cab.className = 'texto-fijo-bloque';
+            cab.textContent = 'Estimados, su apoyo para cambiar el correo electrónico del comercio, desea actualizarlo para su único ID';
+            contenedor.appendChild(cab);
+            const sep0 = document.createElement('hr'); sep0.className = 'plantilla-sep'; contenedor.appendChild(sep0);
+            ['co_ruc', 'co_id', 'co_nombre', 'co_correo', 'co_telefono', 'co_terminal'].forEach(id => {
+                const c = p.campos.find(x => x.id === id);
+                contenedor.appendChild(mkInline(c));
+            });
+            const sep1 = document.createElement('hr'); sep1.className = 'plantilla-sep'; contenedor.appendChild(sep1);
+            const pie0 = document.createElement('div'); pie0.className = 'texto-fijo-bloque';
+            pie0.textContent = 'Tickets previos relacionados: NO'; contenedor.appendChild(pie0);
+            const sep2 = document.createElement('hr'); sep2.className = 'plantilla-sep'; contenedor.appendChild(sep2);
+            contenedor.appendChild(mkVertical(p.campos.find(x => x.id === 'co_dice')));
+            contenedor.appendChild(mkVertical(p.campos.find(x => x.id === 'co_debeDecir')));
+            const sep3 = document.createElement('hr'); sep3.className = 'plantilla-sep'; contenedor.appendChild(sep3);
+            const pie1 = document.createElement('div'); pie1.className = 'texto-fijo-bloque';
+            pie1.textContent = 'Pasa validación Nivel1'; contenedor.appendChild(pie1);
+            
+            setTimeout(() => {
+                const elCorreo = document.getElementById('co_correo');
+                const elDice = document.getElementById('co_dice');
+                if (elCorreo && elDice) {
+                    if (!elDice.value && elCorreo.value) elDice.value = elCorreo.value;
+                    elCorreo.addEventListener('input', () => { elDice.value = elCorreo.value; });
+                }
+            }, 60);
+        }
+
+        function renderCAbono(p, contenedor) {
+            const cab = document.createElement('div'); cab.className = 'texto-fijo-bloque';
+            cab.textContent = 'Estimados, su apoyo con lo siguiente, por favor:'; contenedor.appendChild(cab);
+            
+            const wMotivo = document.createElement('div'); wMotivo.className = 'campo-vertical';
+            const lblM = document.createElement('label'); lblM.textContent = 'Cliente solicita cambiar el tipo de abono,'; lblM.setAttribute('for', 'ca_motivo');
+            const inpM = document.createElement('input'); inpM.type = 'text'; inpM.id = 'ca_motivo'; inpM.placeholder = 'descripción...';
+            wMotivo.appendChild(lblM); wMotivo.appendChild(inpM); contenedor.appendChild(wMotivo);
+            
+            const sep0 = document.createElement('hr'); sep0.className = 'plantilla-sep'; contenedor.appendChild(sep0);
+            
+            const wCambio = document.createElement('div'); wCambio.className = 'campo-vertical';
+            const lblC = document.createElement('label'); lblC.textContent = 'Cambio de:'; lblC.setAttribute('for', 'ca_cambio');
+            const inpC = document.createElement('input'); inpC.type = 'text'; inpC.id = 'ca_cambio'; inpC.placeholder = 'T a T';
+            wCambio.appendChild(lblC); wCambio.appendChild(inpC); contenedor.appendChild(wCambio);
+            
+            const sep1 = document.createElement('hr'); sep1.className = 'plantilla-sep'; contenedor.appendChild(sep1);
+            ['ca_ruc', 'ca_id', 'ca_nombre', 'ca_correo', 'ca_telefono', 'ca_terminal'].forEach(id => {
+                const c = p.campos.find(x => x.id === id);
+                contenedor.appendChild(mkInline(c));
+            });
+            
+            const sep2 = document.createElement('hr'); sep2.className = 'plantilla-sep'; contenedor.appendChild(sep2);
+            const pie1 = document.createElement('div'); pie1.className = 'texto-fijo-bloque'; pie1.textContent = 'Validación Nivel 1'; contenedor.appendChild(pie1);
+            const pie2 = document.createElement('div'); pie2.className = 'texto-fijo-bloque'; pie2.textContent = 'Tickets previos relacionados: NO'; contenedor.appendChild(pie2);
+        }
+
+        // ─── COPIAR PLANTILLA ────────────────────────────────────────────────────────
+        function copiarPlantilla() {
+            if (!plantillaActiva) return;
+            const v = id => (document.getElementById(id)?.value || '').trim();
+            let texto = '';
+
+            if (plantillaActiva === 'cbancaria') {
+                texto = 'Estimados, su apoyo, por favor, comercio solicita actualizar su cuenta bancaria.\n\n'
+                    + 'NOMBRE: ' + v('cb_nombre') + '\nRUC: ' + v('cb_ruc') + '\nID: ' + v('cb_id')
+                    + '\nN Celular de contacto: ' + v('cb_telefono') + '\nPaso la validacion Nivel 1\n'
+                    + 'Datos de la cuenta bancaria:\nNombre del comercio: ' + v('cb_comercio')
+                    + '\nNombre del banco: ' + v('cb_banco') + '\nNumero de cuenta bancaria: ' + v('cb_ncuenta')
+                    + '\nNumero de CCI: ' + v('cb_cci') + '\nTipo de cuenta bancaria: ' + v('cb_tcuenta')
+                    + '\nTipo de moneda: ' + v('cb_moneda') + '\nNombre de la titularidad: ' + v('cb_titular')
+                    + '\n\nDaniel Q. Ramos\nCustomer Care - Call center.';
+            }
+            if (plantillaActiva === 'redpos') {
+                const p = PLANTILLAS.redpos;
+                let bloque = '';
+                p.preguntas.forEach(q => { bloque += q.num + ' ' + q.label + '\n' + (q.fijo ? q.fijo : v(q.id)) + '\n\n'; });
+                texto = 'Estimados, su apoyo con lo siguiente, por favor:\n\n' + bloque.trimEnd() + '\n\n'
+                    + 'RUC: ' + v('rp_ruc') + '\nID: ' + v('rp_id') + '\nNombre: ' + v('rp_nombre')
+                    + '\nCorreo: ' + v('rp_correo') + '\nTelefono: ' + v('rp_telefono') + '\nTerminal: ' + v('rp_terminal')
+                    + '\n\nDaniel Q. Ramos\nCustomer Care - Call center.';
+            }
+            if (plantillaActiva === 'contometros') {
+                texto = 'Estimados, por favor su apoyo con lo siguiente:\n\n'
+                    + 'Motivo de la derivacion: Comercio se comunica para poder solicitar contometros, se valida que no hay campaña de contometros gratis, por lo que requiere gestionar la compra.\n\n'
+                    + 'RUC: ' + v('ct_ruc') + '\nID: ' + v('ct_id') + '\n\nNombre: ' + v('ct_nombre')
+                    + '\nCorreo: ' + v('ct_correo') + '\n\nCOMERCIO SOLICITA CONTOMETROS: ' + v('ct_solicita') + '\n\n'
+                    + 'DIRECCION: ' + v('ct_dir') + '\nREFERENCIA: ' + v('ct_ref')
+                    + '\nHORARIO DE ATENCION: ' + v('ct_horario') + '\nCELULAR: ' + v('ct_celular')
+                    + '\nPERSONA ENCARGADA: ' + v('ct_encargado') + '\n\n'
+                    + 'Tickets previos: No cuenta con tickets previos.\n\nDaniel Q. Ramos\nCustomer Care - Call center.';
+            }
+            if (plantillaActiva === 'correo') {
+                texto = 'Estimados, su apoyo para cambiar el correo electrónico del comercio, desea actualizarlo para su único ID\n\n'
+                    + 'RUC: ' + v('co_ruc') + '\nID: ' + v('co_id') + '\nNombre: ' + v('co_nombre')
+                    + '\nCorreo: ' + v('co_correo') + '\nTelefono: ' + v('co_telefono') + '\nTerminal: ' + v('co_terminal')
+                    + '\n\nTickets previos relacionados: NO\n\n'
+                    + 'Dice: ' + v('co_dice') + '\nDebe decir: ' + v('co_debeDecir')
+                    + '\n\nPasa validación Nivel1\n\nDaniel Q. Ramos\nCustomer Care - Call center.';
+            }
+            if (plantillaActiva === 'cabono') {
+                texto = 'Estimados, su apoyo con lo siguiente, por favor: Cliente solicita cambiar el tipo de abono, ' + v('ca_motivo') + '\n\n'
+                    + 'Cambio de ' + v('ca_cambio') + '\n\n'
+                    + 'RUC: ' + v('ca_ruc') + '\nID: ' + v('ca_id') + '\nNombre: ' + v('ca_nombre')
+                    + '\nCorreo: ' + v('ca_correo') + '\nTelefono: ' + v('ca_telefono') + '\nTerminal: ' + v('ca_terminal')
+                    + '\n\nValidación Nivel 1\n\nTickets previos relacionados: NO\n\nDaniel Q. Ramos\nCustomer Care - Call center.';
+            }
+
+            copiarTexto(texto, 'verde', 'Copiado!');
+        }
+
+        // ─── SOLICITUD ───────────────────────────────────────────────────────────────
+        function copiarSolicitud() {
+            const v = id => (document.getElementById(id)?.value || '').trim();
+            const texto = 'Estimados, su apoyo con lo siguiente, por favor:\n\n'
+                + 'RUC: ' + v('b_ruc') + '\nID: ' + v('b_id') + '\nNombre: ' + v('b_nombre')
+                + '\nCorreo: ' + v('b_correo') + '\nTelefono: ' + v('b_telefono') + '\nTerminal: ' + v('b_terminal')
+                + '\n\nTickets previos relacionados: \n\nDaniel Q. Ramos\nCustomer Care - Call center.';
+            copiarTexto(texto, 'azul', 'Solicitud copiada!');
+        }
+
+        // ─── RECLAMO ─────────────────────────────────────────────────────────────────
+        function copiarReclamo() {
+            const v = id => (document.getElementById(id)?.value || '').trim();
+            const texto = 'Estimados, su apoyo, por favor, comercio indica el siguiente reclamo:\n\n'
+                + '1. Descripcion del problema principal:\nComercio reclama por\n\n'
+                + '2. ¿Que accion o proceso realizaba el comercio cuando ocurrio?\nRealizando\n\n'
+                + '3. ¿Cual fue el impacto generado?\nComercio\n\n'
+                + '4. ¿Cuales fueron los descartes y validaciones realizadas por el asesor?\nSe valida que\n\n'
+                + '5. Adjuntar evidencias\n\n'
+                + '6. ¿Que solucion espera el comercio?\nSolicita\n\n'
+                + '7. ¿Que informacion adicional se necesita para la resolucion?\n'
+                + 'RUC: ' + v('b_ruc') + '\nID: ' + v('b_id') + '\nNombre: ' + v('b_nombre')
+                + '\nCorreo: ' + v('b_correo') + '\nTelefono: ' + v('b_telefono') + '\nTerminal: ' + v('b_terminal')
+                + '\n\n8. Tickets previos relacionados: NO\n\nDaniel Q. Ramos\nCustomer Care - Call center.';
+            copiarTexto(texto, 'naranja', 'Reclamo copiado!');
+        }
+
+        // ─── UTIL ────────────────────────────────────────────────────────────────────
+        function copiarTexto(texto, colorType, msg) {
+            const hacer = () => mostrarToast(msg, colorType);
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(texto).then(hacer);
+            } else {
+                const el = document.createElement('textarea');
+                el.value = texto;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                hacer();
+            }
+            
+            if (plantillaActiva) {
+                const btn = document.getElementById('btnCopiar');
+                if (btn) {
+                    const ogText = btn.textContent;
+                    btn.textContent = 'Copiado';
+                    btn.classList.add('copiado');
+                    setTimeout(() => { btn.textContent = ogText; btn.classList.remove('copiado'); }, 2000);
+                }
+            }
+        }
+
+        function mostrarToast(msg, colorType) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('visible', colorType);
+            
+            setTimeout(() => {
+                t.classList.remove('visible', 'azul', 'naranja', 'verde');
+            }, 2000);
+        }
+
+        function autoAjustar(el) {
+            el.style.height = 'auto';
+            el.style.height = el.scrollHeight + 'px';
+        }
+
+        function limpiarTodo() {
+            ['b_ruc', 'b_id', 'b_nombre', 'b_correo', 'b_telefono', 'b_terminal'].forEach(id => {
+                const el = document.getElementById(id); if (el) el.value = '';
+            });
+            if (plantillaActiva) {
+                const p = PLANTILLAS[plantillaActiva];
+                const todos = [...(p.campos || []), ...(p.basicos || []), ...(p.preguntas || []).filter(q => !q.fijo)];
+                todos.forEach(c => { const el = document.getElementById(c.id); if (el) { el.value = c.prefijo || ''; autoAjustar(el); } });
+                ['co_dice', 'co_debeDecir', 'ca_motivo', 'ca_cambio'].forEach(id => {
+                    const el = document.getElementById(id); if (el) el.value = '';
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
